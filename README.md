@@ -44,7 +44,55 @@ This command will install all the necessary libraries and packages, including:
 bash install.sh
 ```
 
-### Run Evaluation
+## Run Evaluation
+
+
+### End-to-end performance
+
+```shell
+cd benchmark/end2end
+bash run.sh
+```
+
+### Propagate performance
+
+- Speedup
+
+```shell
+cd benchmark/propagate/propagate
+bash speedup.sh
+```
+
+- Performance with different feature dimension
+
+```shell
+cd benchmark/propagate/propagate
+bash feature_scale.sh
+```
+
+- Peak memory
+
+```shell
+cd benchmark/propagate/peak_memory
+bash run.sh
+```
+
+### Transformation performance
+
+- Time and accuracy
+
+```shell
+cd benchmark/transform/time_accu
+bash run.sh
+```
+
+- Time breakdown
+
+```shell
+cd benchmark/transform/time_breakdown
+bash run.sh
+```
+
 
 
 
