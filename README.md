@@ -6,6 +6,20 @@ Hierarchical Compression**.
 
 The project's code base is organized in the following directory structure.
 
+```shell
+.
+├── benchmark
+├── dataset
+├── install.sh
+├── layer
+├── LICENSE
+├── loader
+├── model
+├── README.md
+├── requirements.txt
+└── src
+```
+
 ## Installaction
 
 To use this repository, please follow the steps below to install the required dependencies.
