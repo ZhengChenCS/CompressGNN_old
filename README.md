@@ -35,6 +35,7 @@ This command will install all the necessary libraries and packages, including:
 - Deep Graph Library (DGL)
 - torch_scatter
 - torch_sparse
+- pybind
 - ...
 
 4. Install CompressGNN

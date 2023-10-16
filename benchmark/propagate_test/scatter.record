@@ -1,0 +1,60 @@
+cnr-2000
+PyG Scatter:
+Origin Data ...
+=======================================================
+CPU platform for 10 run_times: 40.7029s
+GPU platform for 100 run_times: 12.5997s
+Compress Data...
+=======================================================
+CPU platform for 10 run_times: 21.0611s
+GPU platform for 100 run_times: 5.5791s
+web-BerkStan
+PyG Scatter:
+Origin Data ...
+=======================================================
+CPU platform for 10 run_times: 50.0990s
+GPU platform for 100 run_times: 15.1313s
+Compress Data...
+=======================================================
+CPU platform for 10 run_times: 28.7450s
+GPU platform for 100 run_times: 8.9318s
+eu-2005
+PyG Scatter:
+Origin Data ...
+=======================================================
+CPU platform for 10 run_times: 56.8419s
+GPU platform for 100 run_times: 18.2100s
+Compress Data...
+=======================================================
+CPU platform for 10 run_times: 25.6044s
+GPU platform for 100 run_times: 7.7246s
+in-2004
+PyG Scatter:
+Origin Data ...
+=======================================================
+CPU platform for 10 run_times: 50.9977s
+GPU platform for 100 run_times: 16.4178s
+Compress Data...
+=======================================================
+CPU platform for 10 run_times: 22.5508s
+GPU platform for 100 run_times: 6.5078s
+uk-2007-05@1000000
+PyG Scatter:
+Origin Data ...
+=======================================================
+CPU platform for 10 run_times: 66.9008s
+GPU platform for 100 run_times: 19.2521s
+Compress Data...
+=======================================================
+CPU platform for 10 run_times: 25.5235s
+GPU platform for 100 run_times: 6.3148s
+hollywood-2009
+PyG Scatter:
+Origin Data ...
+=======================================================
+CPU platform for 10 run_times: 71.9521s
+GPU platform for 100 run_times: 13.4851s
+Compress Data...
+=======================================================
+CPU platform for 10 run_times: 46.9886s
+GPU platform for 100 run_times: 7.8758s

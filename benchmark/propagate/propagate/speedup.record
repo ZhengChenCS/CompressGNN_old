@@ -1,0 +1,116 @@
+cnr-2000
+----------Kongming GAS-----------
+gpu platform for 100 run_times: 5.5691(s)
+cpu platform for 10 run_times: 21.3799(s)
+----------Kongming SPMM-----------
+gpu platform for 100 run_times: 1.2934(s)
+cpu platform for 10 run_times: 4.9949(s)
+----------PyG GAS-----------
+gpu platform for 100 run_times: 12.6699(s)
+cpu platform for 10 run_times: 43.8172(s)
+----------PyG SPMM-----------
+gpu platform for 100 run_times: 2.4188(s)
+cpu platform for 10 run_times: 5.9340(s)
+----------DGL SPMM-----------
+gpu platform for 100 run_times: 2.8485(s)
+cpu platform for 10 run_times: 6.3896(s)
+web-BerkStan
+----------Kongming GAS-----------
+gpu platform for 100 run_times: 8.4652(s)
+cpu platform for 10 run_times: 28.1907(s)
+----------Kongming SPMM-----------
+gpu platform for 100 run_times: 1.6195(s)
+cpu platform for 10 run_times: 5.5142(s)
+----------PyG GAS-----------
+gpu platform for 100 run_times: 15.1706(s)
+cpu platform for 10 run_times: 59.4138(s)
+----------PyG SPMM-----------
+gpu platform for 100 run_times: 3.2791(s)
+cpu platform for 10 run_times: 4.9483(s)
+----------DGL SPMM-----------
+gpu platform for 100 run_times: 3.4059(s)
+cpu platform for 10 run_times: 5.5885(s)
+eu-2005
+----------Kongming GAS-----------
+gpu platform for 100 run_times: 7.2140(s)
+cpu platform for 10 run_times: 29.1757(s)
+----------Kongming SPMM-----------
+gpu platform for 100 run_times: 1.4101(s)
+cpu platform for 10 run_times: 4.8774(s)
+----------PyG GAS-----------
+gpu platform for 100 run_times: 18.2189(s)
+cpu platform for 10 run_times: 60.0223(s)
+----------PyG SPMM-----------
+gpu platform for 100 run_times: 2.5064(s)
+cpu platform for 10 run_times: 5.0626(s)
+----------DGL SPMM-----------
+gpu platform for 100 run_times: 3.7527(s)
+cpu platform for 10 run_times: 6.5427(s)
+in-2004
+----------Kongming GAS-----------
+gpu platform for 100 run_times: 6.0533(s)
+cpu platform for 10 run_times: 25.2393(s)
+----------Kongming SPMM-----------
+gpu platform for 100 run_times: 1.3996(s)
+cpu platform for 10 run_times: 4.9700(s)
+----------PyG GAS-----------
+gpu platform for 100 run_times: 16.4321(s)
+cpu platform for 10 run_times: 55.6043(s)
+----------PyG SPMM-----------
+gpu platform for 100 run_times: 2.6675(s)
+cpu platform for 10 run_times: 6.8716(s)
+----------DGL SPMM-----------
+gpu platform for 100 run_times: 3.5873(s)
+cpu platform for 10 run_times: 6.7831(s)
+uk-2007-05@1000000
+----------Kongming GAS-----------
+gpu platform for 100 run_times: 6.2799(s)
+cpu platform for 10 run_times: 29.7201(s)
+----------Kongming SPMM-----------
+gpu platform for 100 run_times: 1.1540(s)
+cpu platform for 10 run_times: 5.3236(s)
+----------PyG GAS-----------
+gpu platform for 100 run_times: 19.2635(s)
+cpu platform for 10 run_times: 79.2770(s)
+----------PyG SPMM-----------
+gpu platform for 100 run_times: 4.5464(s)
+cpu platform for 10 run_times: 6.1715(s)
+----------DGL SPMM-----------
+gpu platform for 100 run_times: 3.8781(s)
+cpu platform for 10 run_times: 6.1905(s)
+hollywood-2009
+----------Kongming GAS-----------
+gpu platform for 100 run_times: 7.5180(s)
+cpu platform for 10 run_times: 48.0837(s)
+----------Kongming SPMM-----------
+gpu platform for 100 run_times: 1.0781(s)
+cpu platform for 10 run_times: 7.6231(s)
+----------PyG GAS-----------
+gpu platform for 100 run_times: 13.4911(s)
+cpu platform for 10 run_times: 71.3285(s)
+----------PyG SPMM-----------
+gpu platform for 100 run_times: 0.9269(s)
+cpu platform for 10 run_times: 9.0921(s)
+----------DGL SPMM-----------
+gpu platform for 100 run_times: 2.5517(s)
+cpu platform for 10 run_times: 8.2632(s)
+Reddit
+----------Kongming SPMM-----------
+gpu platform for 100 run_times: 33.8339(s)
+cpu platform for 10 run_times: 112.3431(s)
+----------PyG SPMM-----------
+gpu platform for 100 run_times: 42.7440(s)
+cpu platform for 10 run_times: 128.8236(s)
+----------DGL SPMM-----------
+gpu platform for 100 run_times: 60.0742(s)
+cpu platform for 10 run_times: 132.3179(s)
+AmazonProducts
+----------Kongming SPMM-----------
+gpu platform for 100 run_times: 26.8962(s)
+cpu platform for 10 run_times: 125.4351(s)
+----------PyG SPMM-----------
+gpu platform for 100 run_times: 35.5057(s)
+cpu platform for 10 run_times: 133.2268(s)
+----------DGL SPMM-----------
+gpu platform for 100 run_times: 46.5358(s)
+cpu platform for 10 run_times: 135.2958(s)

@@ -1,0 +1,13 @@
+baseline
+
+Cora            1.4390      79.20%
+Citeseer        1.9858      63.00%
+PubMed          1.5103      76.10%
+ogbn_arxiv      2.4672      48.33%
+Reddit          99.8686     94.35%
+AmazonProducts  133.6696    34.71%
+
+kongming
+
+Cora            0.8167      56.90%
+AmazonProducts  75.7866s    26.97%
