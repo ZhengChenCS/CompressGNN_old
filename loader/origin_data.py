@@ -2,8 +2,8 @@ import numpy as np
 import torch
 from torch import Tensor
 import copy
-from kongming_compress import add_self_loop_csr, add_self_loop_coo
-from kongming_compress import gcn_norm_coo, get_norm_degree, gcn_norm_csr
+from compressgnn_offline import add_self_loop_csr, add_self_loop_coo
+from compressgnn_offline import gcn_norm_coo, get_norm_degree, gcn_norm_csr
 from torch_sparse import SparseTensor
 
 

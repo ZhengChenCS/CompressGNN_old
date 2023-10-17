@@ -3,7 +3,7 @@ from typing import Optional
 from torch import Tensor
 from torch_sparse import SparseTensor, matmul
 from torch_geometric.typing import Adj, OptTensor
-from KongmingPropagation import Propagate
+from CompressgnnPropagation import Propagate
 
 
 class KPUPropagate(Propagate):
@@ -27,7 +27,7 @@ class KPUPropagate(Propagate):
         cache = self._cached_x
         if cache is None:
             for k in range(self.K):
-                x = self.kongming_propagate(x=x, edge_index=edge_index,  edge_weight=edge_weight, vertex_cnt=vertex_cnt, rule_cnt=rule_cnt,
+                x = self.compressgnn_propagate(x=x, edge_index=edge_index,  edge_weight=edge_weight, vertex_cnt=vertex_cnt, rule_cnt=rule_cnt,
                                               size=None)
             if self.cached:
                 self._cached_x = x

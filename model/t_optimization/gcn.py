@@ -1,9 +1,9 @@
 import torch
 import sys
-sys.path.append('../../kongming_layer')
+sys.path.append('../../layer')
 from SLPropagate import SLPropagate
-from KongmingCluster import Kongming_Cluster
-from KongmingReconstruct import Kongming_Reconstruct
+from CompressgnnCluster import Compressgnn_Cluster
+from CompressgnnReconstruct import Compressgnn_Reconstruct
 from torch import Tensor
 import torch.nn.functional as F
 from metric import cosine_distance
@@ -15,8 +15,8 @@ class GCN(torch.nn.Module):
         self.P1 = SLPropagate()
         self.P2 = SLPropagate()
         self.lin2 = torch.nn.Linear(in_features=in_features, out_features=out_features)
-        self.cluster = Kongming_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=True)
-        self.reconstruct = Kongming_Reconstruct()
+        self.cluster = Compressgnn_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=True)
+        self.reconstruct = Compressgnn_Reconstruct()
 
     def forward(self, x: Tensor, edge_index: Tensor) -> Tensor:
         x = self.lin1(x)

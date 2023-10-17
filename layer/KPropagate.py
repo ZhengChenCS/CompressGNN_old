@@ -10,7 +10,7 @@ from torch_sparse import SparseTensor, fill_diag, matmul
 from torch_sparse import sum as sparsesum
 from type import Adj, OptTensor
 
-from KongmingPropagation import Propagate
+from CompressgnnPropagation import Propagate
 
 
 class KPropagate(Propagate):
@@ -22,7 +22,7 @@ class KPropagate(Propagate):
 
     def forward(self, x: Tensor, edge_index, edge_weight=None, vertex_cnt=None, rule_cnt=None) -> Tensor:
         """"""
-        out = self.kongming_propagate(edge_index=edge_index, x=x, edge_weight=edge_weight, vertex_cnt=vertex_cnt, rule_cnt=rule_cnt,
+        out = self.compressgnn_propagate(edge_index=edge_index, x=x, edge_weight=edge_weight, vertex_cnt=vertex_cnt, rule_cnt=rule_cnt,
                                       size=None)
         return out
 

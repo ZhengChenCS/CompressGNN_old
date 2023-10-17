@@ -15,10 +15,10 @@ import argparse
 import numpy as np
 import sys
 from tqdm import tqdm
-sys.path.append("../../../kongming_layer/")
+sys.path.append("../../../layer/")
 sys.path.append("../../../loader/")
-sys.path.append("../../../Application")
-from KongmingData import KongmingData
+sys.path.append("../../../model")
+
 from sgc_loader import SGCData, SGCDataLoader
 from baseline.gcn import GCN
 

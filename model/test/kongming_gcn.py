@@ -1,11 +1,11 @@
 import torch
 import sys
-sys.path.append('../../kongming_layer')
+sys.path.append('../../layer')
 from KPropagate import KPropagate
 from torch import Tensor
 import torch.nn.functional as F
-from KongmingCluster import Kongming_Cluster
-from KongmingReconstruct import Kongming_Reconstruct
+from CompressgnnCluster import Compressgnn_Cluster
+from CompressgnnReconstruct import Compressgnn_Reconstruct
 from metric import batch_distance
 
 
@@ -16,9 +16,9 @@ class GCN(torch.nn.Module):
         self.P1 = SLPropagate(add_self_loops=False, normalize=False)
         self.P2 = SLPropagate(add_self_loops=False, normalize=False)
         self.lin2 = torch.nn.Linear(in_features=in_features, out_features=out_features, bias=False)
-        self.cluster1 = Kongming_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=False, index_cache=False)
-        self.cluster2 = Kongming_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=False, index_cache=False)
-        self.reconstruct = Kongming_Reconstruct()
+        self.cluster1 = Compressgnn_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=False, index_cache=False)
+        self.cluster2 = Compressgnn_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=False, index_cache=False)
+        self.reconstruct = Compressgnn_Reconstruct()
     
 
     def inference(self, x: Tensor, edge_index: Tensor) -> Tensor:

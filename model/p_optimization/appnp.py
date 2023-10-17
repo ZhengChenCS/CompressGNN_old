@@ -1,6 +1,6 @@
 import torch
 import sys
-sys.path.append('../../kongming_layer')
+sys.path.append('../../layer')
 from KPropagate import KPropagate
 from torch import Tensor
 import torch.nn.functional as F

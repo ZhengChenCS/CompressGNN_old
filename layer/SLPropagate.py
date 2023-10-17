@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from torch import Tensor
 
-from KongmingPropagation import Propagate
+from CompressgnnPropagation import Propagate
 from type import Adj, OptTensor
 from torch_sparse import matmul, SparseTensor
 

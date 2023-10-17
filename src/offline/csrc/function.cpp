@@ -19,7 +19,7 @@
 #include <pybind11/stl.h>
 
 
-PYBIND11_MODULE(kongming_compress, m) {
+PYBIND11_MODULE(compressgnn_offline, m) {
   m.def("compress_csr", &compress_csr, "Compressing graph with csr format");
   m.def("gen_edge_order", &gen_edge_order,
         "generate edge order for compressed data with coo format");

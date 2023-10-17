@@ -1,6 +1,6 @@
 import torch
 import sys
-sys.path.append('../../kongming_layer')
+sys.path.append('../../layer')
 import SLPropagate
 from SLPropagate import SLPropagate
 from torch import Tensor

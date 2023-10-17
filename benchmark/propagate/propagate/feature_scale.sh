@@ -1,4 +1,4 @@
-root=/home/KongmingDataset/cnr-2000
+root=dataset
 
 feature_dim=(1 2 4 8 16 32 64 128 256 512 1024)
 
@@ -9,22 +9,22 @@ do
     compress_csr_data=${root}/compress/feature_scale/csr/${feature_dim[i]}.pt
     coo_data=${root}/origin/feature_scale/coo/${feature_dim[i]}.pt
     csr_data=${root}/origin/feature_scale/csr/${feature_dim[i]}.pt
-    echo "----------Kongming GAS-----------"
-    python kongming_gas.py \
+    echo "----------compressgnn GAS-----------"
+    python compressgnn_gas.py \
     --data=${compress_coo_data} \
     --device=gpu \
     --run_nums=100
-    python kongming_gas.py \
+    python compressgnn_gas.py \
     --data=${compress_coo_data} \
     --device=cpu \
     --run_nums=10
 
-    echo "----------Kongming SPMM-----------"
-    python kongming_spmm.py \
+    echo "----------compressgnn SPMM-----------"
+    python compressgnn_spmm.py \
     --data=${compress_csr_data} \
     --device=gpu \
     --run_nums=100
-    python kongming_spmm.py \
+    python compressgnn_spmm.py \
     --data=${compress_csr_data} \
     --device=cpu \
     --run_nums=10
@@ -58,4 +58,5 @@ do
     --data=${csr_data} \
     --device=cpu \
     --run_nums=10
+    break
 done

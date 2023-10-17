@@ -15,11 +15,11 @@ import argparse
 import numpy as np
 import sys
 from tqdm import tqdm
-sys.path.append("../../kongming_layer/")
+sys.path.append("../../layer/")
 sys.path.append("../../loader/")
-sys.path.append("../../Application/dgl")
-from KongmingData import KongmingData
-from sgc_loader import SGCData, SGCDataLoader
+sys.path.append("../../model/dgl")
+from CompressgnnData import CompressgnnData
+# from sgc_loader import SGCData, SGCDataLoader
 from sgc import SGC
 
 logger = logging.getLogger(__name__)

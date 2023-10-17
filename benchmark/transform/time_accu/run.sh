@@ -1,4 +1,4 @@
-root_dir=/home/KongmingDataset
+root_dir=dataset
 
 dataset=(Cora CiteSeer PubMed Reddit AmazonProducts)
 num_features=(1433 3703 500 602 200)
@@ -18,10 +18,10 @@ deltaH=(6 3 8 4 5)
 #     --device=gpu
 # done
 
-for i in {4..4}
+for i in {0..4}
 do
     data=${root_dir}/${dataset[i]}/origin/data_csr.pt
-    python kongming_sgc.py \
+    python compressgnn_sgc.py \
     --data=${data} \
     --num_features=${num_features[i]} \
     --num_classes=${num_classes[i]} \

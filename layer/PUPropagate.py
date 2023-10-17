@@ -4,7 +4,7 @@ from torch import Tensor
 from torch_sparse import SparseTensor, matmul
 
 from torch_geometric.typing import Adj, OptTensor
-from KongmingPropagation import Propagate
+from CompressgnnPropagation import Propagate
 import time
 
 

@@ -1,7 +1,7 @@
 import torch 
 import numpy as np
 from torch_sparse import SparseTensor
-from kongming_compress import hybird_partition, topo_partition
+from compressgnn_offline import hybird_partition, topo_partition
 
 class CompressGraph():
     def __init__(self, vlist, elist, value, vertex_cnt):

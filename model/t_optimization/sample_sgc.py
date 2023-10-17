@@ -1,10 +1,10 @@
 import torch
 import sys
-sys.path.append('../../kongming_layer')
+sys.path.append('../../layer')
 import PUPropagate
 from PUPropagate import PUPropagate
-from KongmingCluster import Kongming_Cluster
-from KongmingReconstruct import Kongming_Reconstruct
+from CompressgnnCluster import Compressgnn_Cluster
+from CompressgnnReconstruct import Compressgnn_Reconstruct
 from torch import Tensor
 import torch.nn.functional as F
 from metric import cosine_distance
@@ -16,8 +16,8 @@ class SGC(torch.nn.Module):
         super().__init__()
         self.lin = torch.nn.Linear(in_features=in_features, out_features=out_features)
         self.P = PUPropagate(cached=False, K=K, normalize=True)
-        self.cluster = Kongming_Cluster(in_feature=in_features, param_H=param_H, training=True)
-        self.reconstruct = Kongming_Reconstruct()
+        self.cluster = Compressgnn_Cluster(in_feature=in_features, param_H=param_H, training=True)
+        self.reconstruct = Compressgnn_Reconstruct()
     
     def reset_cache(self):
         self.P.reset_parameters()

@@ -1,9 +1,9 @@
 import torch
 import sys
-sys.path.append('../../kongming_layer')
+sys.path.append('../../layer')
 from SLPropagate import SLPropagate
-from KongmingCluster import Kongming_Cluster
-from KongmingReconstruct import Kongming_Reconstruct
+from CompressgnnCluster import Compressgnn_Cluster
+from CompressgnnReconstruct import Compressgnn_Reconstruct
 from torch import Tensor
 import torch.nn.functional as F
 from torch_geometric.nn.dense.linear import Linear
@@ -19,9 +19,9 @@ class GCN(torch.nn.Module):
         self.P2 = SLPropagate()
         self.lin2 = torch.nn.Linear(in_features=in_features, out_features=out_features, bias=True)
         index_cache = kwargs.get('index_cache', False)
-        self.cluster1 = Kongming_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=True, index_cache=False)
-        self.cluster2 = Kongming_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=True, index_cache=False)
-        self.reconstruct = Kongming_Reconstruct()
+        self.cluster1 = Compressgnn_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=True, index_cache=False)
+        self.cluster2 = Compressgnn_Cluster(in_feature=in_features, param_H=param_H, training=True, cache=True, index_cache=False)
+        self.reconstruct = Compressgnn_Reconstruct()
         self.x_size = []
     
     def reset_cache(self):
