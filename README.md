@@ -10,6 +10,7 @@ The project's code base is organized in the following directory structure.
 .
 ├── benchmark
 ├── dataset
+├── genData
 ├── install.sh
 ├── layer
 ├── LICENSE
