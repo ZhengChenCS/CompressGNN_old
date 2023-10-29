@@ -1,7 +1,6 @@
-root_dir=dataset
-# ncu=/home/chenzheng/.conda/envs/local_pyg/nsight-compute/ncu
+root_dir=../../../dataset
 
-dataset=(Cora)
+dataset=(cnr-2000 web-BerkStan eu-2005 in-2004 uk-2007-05@1000000 hollywood-2009 Reddit AmazonProducts)
 
 for i in {0..5}
 do

@@ -1,6 +1,6 @@
-root_dir=dataset
+root_dir=../../../dataset
 
-dataset=(Cora)
+dataset=(Cora CiteSeer PubMed Reddit AmazonProducts)
 num_features=(1433 3703 500 602 200)
 num_classes=(7 6 3 41 102) 
 deltaH=(6 6 9 0 0)
@@ -16,5 +16,4 @@ do
     --epochs=100 \
     --device=gpu \
     --deltaH=${deltaH[i]}
-    break
 done
