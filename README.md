@@ -59,17 +59,68 @@ This command will install all the necessary libraries and packages, including:
 bash install.sh
 ```
 
+## Data Preparation
+
+### Download Dataset
+
+We have uploaded the dataset using [Git LFS](https://github.com/git-lfs/git-lfs.git). Users can use `git lfs pull` to download all the dataset, or generate a dataset in a format that meets our data specifications from elsewhere.
+
+
+### Input Data Format
+
+```shell
+.
+├── csr_elist.npy
+├── csr_vlist.npy
+├── edge.npy
+├── features.npy
+├── labels.npy
+├── test_mask.npy
+├── train_mask.npy
+└── val_mask.npy
+```
+
+### Generate Torch Format Dataset
+
+```shell
+cd genData
+python createTorchDataset.py <input data folder> <output data folder> coo/csr
+```
+
+### Generate Compressed Torch Fromat Dataset
+
+```shell
+cd genData
+python createCompressDataset <input data folder> <output data folder> coo/csr 
+```
+
+### Generate datasets with different feature lengths
+
+```shell
+cd genData
+python datagen_feature.py --data=xxx.pt --scale_factor=length --output=xxx.pt
+```
+
+### Generate dataset using scripts.
+
+```
+cd genData
+bash preprocess.sh
+bash preprocess_compress.sh
+bash datagen_feature.sh
+```
+
 ## Run Evaluation
 
 
-### End-to-end performance
+### End-to-end Performance
 
 ```shell
 cd benchmark/end2end
 bash run.sh
 ```
 
-### Propagate performance
+### Propagate Performance
 
 - Speedup
 
@@ -92,7 +143,7 @@ cd benchmark/propagate/peak_memory
 bash run.sh
 ```
 
-### Transformation performance
+### Transformation Performance
 
 - Time and accuracy
 
