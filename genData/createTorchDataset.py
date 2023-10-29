@@ -1,16 +1,18 @@
 import os
 import sys
-sys.path.append("../loader/")
-from CompressgnnData import CompressgnnData
+sys.path.append("../loader")
 import getopt
 import torch
 import numpy as np
+import torch_geometric
+from origin_data import Data
+
+
 
 def main():
-    data_dir = sys.argv[1] + "/origin"
+    data_dir = sys.argv[1]
     graph_dir = sys.argv[1] + "/origin"
-    save_dir = sys.argv[2]
-    graph_type = sys.argv[3]
+    graph_type = sys.argv[2] + "/origin"
     train_mask_path = data_dir + "/train_mask.npy"
     vaild_mask_path = data_dir + "/val_mask.npy"
     test_mask_path = data_dir + "/test_mask.npy"
@@ -31,22 +33,18 @@ def main():
         test_mask = np.load(test_mask_path)
     if graph_type == "coo":
         edge_index = np.load(graph_dir + "/edge.npy")
-        data = CompressgnnData(
+        data = Data(
             x=x,
             y=y,
             edge_index=edge_index,
             train_mask=train_mask,
             vaild_mask=vaild_mask,
             test_mask=test_mask,
-            graph_type="coo",
-            max_depth=3,
-            threshold=16,
-            min_edge=1000000,
-            add_self_loop=True)
+            graph_type="coo")
     elif graph_type == "csr":
         vlist = np.load(graph_dir + "/csr_vlist.npy")
         elist = np.load(graph_dir + "/csr_elist.npy")
-        data = CompressgnnData(
+        data = Data(
             x=x,
             y=y,
             edge_index=(
@@ -55,14 +53,9 @@ def main():
             train_mask=train_mask,
             vaild_mask=vaild_mask,
             test_mask=test_mask,
-            graph_type="csr",
-            normalize=True,
-            max_depth=3,
-            min_edge=1000000,
-            threshold=16)
+            graph_type="csr")
     print(data)
-    # torch.save(data, save_dir + "/data_" + graph_type + "_default.pt")
-    torch.save(data, save_dir + "/data_" + graph_type + "_" + str(data.step) + ".pt")
+    torch.save(data, graph_dir + "/data_" + graph_type + ".pt")
 
 
 if __name__ == '__main__':

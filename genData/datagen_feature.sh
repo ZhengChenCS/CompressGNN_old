@@ -1,6 +1,6 @@
-root=dataset
+root=../../dataset
 
-dataset=Cora
+dataset=cnr-2000
 
 if [ ! -d "${root}/${dataset}/origin/feature_scale/" ]; then
     mkdir -p ${root}/${dataset}/origin/feature_scale
