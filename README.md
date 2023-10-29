@@ -63,7 +63,9 @@ bash install.sh
 
 ### Download Dataset
 
-We have uploaded the dataset using [Git LFS](https://github.com/git-lfs/git-lfs.git). Users can use `git lfs pull` to download all the dataset, or generate a dataset in a format that meets our data specifications from elsewhere.
+We have uploaded the small dataset `Cora` and `cnr-2000`. 
+Users can generate a dataset in a format that meets our data specifications from [WebGraph](https://webgraph.di.unimi.it/) and [PyTorch Geometric](https://github.com/pyg-team/pytorch_geometric.git).
+
 
 
 ### Input Data Format
