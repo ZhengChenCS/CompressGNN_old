@@ -1,5 +1,5 @@
 # CompressGNN
-This is the anonymous repository for submitting paper **CompressGNN: Accelerating Graph Neural Network Training via
+This is the VLDB'25 repository for submitting paper **CompressGNN: Accelerating Graph Neural Network Training via
 Hierarchical Compression**.
 
 ## Code Structure
