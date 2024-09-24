@@ -12,13 +12,13 @@ from origin_data import Data
 def main():
     data_dir = sys.argv[1]
     graph_dir = sys.argv[1] + "/origin"
-    graph_type = sys.argv[2] + "/origin"
-    train_mask_path = data_dir + "/train_mask.npy"
-    vaild_mask_path = data_dir + "/val_mask.npy"
-    test_mask_path = data_dir + "/test_mask.npy"
+    graph_type = sys.argv[2]
+    train_mask_path = graph_dir + "/train_mask.npy"
+    vaild_mask_path = graph_dir + "/val_mask.npy"
+    test_mask_path = graph_dir + "/test_mask.npy"
 
-    x = np.load(data_dir + "/features.npy")
-    y = np.load(data_dir + "/labels.npy")
+    x = np.load(graph_dir + "/features.npy")
+    y = np.load(graph_dir + "/labels.npy")
     if y.ndim == 2:
         y = [np.argmax(row_y) for row_y in y]
     y = np.array(y)

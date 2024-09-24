@@ -10,6 +10,8 @@ def main():
     data_dir = sys.argv[1] + "/origin"
     graph_dir = sys.argv[1] + "/origin"
     save_dir = sys.argv[2]
+    if not os.path.exists(save_dir):
+        os.mkdir(save_dir)
     graph_type = sys.argv[3]
     train_mask_path = data_dir + "/train_mask.npy"
     vaild_mask_path = data_dir + "/val_mask.npy"

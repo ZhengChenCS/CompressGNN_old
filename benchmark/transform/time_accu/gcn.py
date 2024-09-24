@@ -19,7 +19,7 @@ sys.path.append("../../../layer/")
 sys.path.append("../../../loader/")
 sys.path.append("../../../model")
 
-from sgc_loader import SGCData, SGCDataLoader
+# from sgc_loader import SGCData, SGCDataLoader
 from baseline.gcn import GCN
 
 logger = logging.getLogger(__name__)
@@ -49,6 +49,7 @@ def test(model, data, device):
     test_number = data.test_mask.sum().item()
 
     logger.info("Accuracy of Test Samples: {:.2f}%".format( (test_correct / test_number * 100) ))
+    print("Accuracy of Test Samples: {:.2f}%".format( (test_correct / test_number * 100) ))
 
 def train_runtime(model, data, epochs, device):
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -60,17 +61,29 @@ def train_runtime(model, data, epochs, device):
     if torch.cuda.is_available():
         torch.cuda.synchronize()
     t_start = time.perf_counter()
+    old = 100
+    patent = 0
+    num_epoch = 0
     for epoch in tqdm(range(epochs)):
         pred = model(data.x, data.edge_index)
         loss = F.cross_entropy(pred[mask], y)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        if epoch % 5 == 0:
-            test(model, dataset, device)
+        if old < loss:
+            patent += 1
+        else:
+            if (old - loss)  < 1e-5 and epoch != 0:
+                patent += 1
+            old = loss
+        if patent > 10:
+            break
+        num_epoch += 1
+
     if torch.cuda.is_available():
         torch.cuda.synchronize()
     t_end = time.perf_counter()
+    print("Epoch: {:d}".format(num_epoch))
     return t_end - t_start
 
 
@@ -97,7 +110,8 @@ if __name__ == '__main__':
     
 
     train_time = train_runtime(model, dataset, epochs=args.epochs, device=device)
-    logger.info("Train time for {:d} epoch: {:.4f}s".format(args.epochs, train_time))
+    logger.info("Train time: {:.4f}s".format(train_time))
+    print("Train time: {:.4f}s".format(train_time))
 
     test(model, dataset, device)
     

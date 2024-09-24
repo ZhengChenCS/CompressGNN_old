@@ -75,9 +75,9 @@ def train_runtime(model, data, epochs, device):
             patent += 1
         else:
             if (old - loss)  < 1e-5 and epoch != 0:
-                break
+                patent += 1
             old = loss
-        if patent > 5:
+        if patent > 10:
             break
         num_epoch += 1
     print("Epoch: {:d}".format(num_epoch))
@@ -112,9 +112,9 @@ if __name__ == '__main__':
     model.reset_cache()
 
     train_time = train_runtime(model, dataset, epochs=args.epochs, device=device)
-    logger.info("Train time for {:d} epoch: {:.4f}s".format(args.epochs, train_time))
+    # logger.info("Train time for {:d} epoch: {:.4f}s".format(args.epochs, train_time))
     print("Propagate time:{:.4f}".format(model.propagate_time))
-    print("Train time for {:d} epoch: {:.4f}s".format(args.epochs, train_time))
+    print("Train time {:.4f}s".format(train_time))
 
     test(model, dataset, device)
     
