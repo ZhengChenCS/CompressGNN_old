@@ -9,52 +9,40 @@ from origin_data import Data
 import time
 
 
-def sample(src: SparseTensor, num_neighbors: int,
-           subset: Optional[torch.Tensor] = None) -> torch.Tensor:
-
-    rowptr, col, _ = src.csr()
-    rowcount = src.storage.rowcount()
-
-    if subset is not None:
-        rowcount = rowcount[subset]
-        rowptr = rowptr[subset]
-    else:
-        rowptr = rowptr[:-1]
-
-    rand = torch.rand((rowcount.size(0), num_neighbors), device=col.device)
-    rand.mul_(rowcount.to(rand.dtype).view(-1, 1))
-    rand = rand.to(torch.long)
-    rand.add_(rowptr.view(-1, 1))
-
-    return col[rand]
-
-
-def sample_adj(src: SparseTensor, subset: torch.Tensor, num_neighbors: int,
-               replace: bool = False) -> Tuple[SparseTensor, torch.Tensor]:
+def neighbor_sample(src: SparseTensor, subset: torch.Tensor, num_neighbor,
+               replace: bool = False, is_directed: bool = True) -> Tuple[SparseTensor, torch.Tensor]:
 
     rowptr, col, value = src.csr()
 
-    rowptr, col, n_id, e_id = torch.ops.torch_sparse.sample_adj(
-        rowptr, col, subset, num_neighbors, replace)
+    node, row, col, edge = torch.ops.torch_sparse.neighbor_sample(
+        rowptr, col, subset, num_neighbors, replace, is_directed)
 
-    if value is not None:
-        value = value[e_id]
 
-    out = SparseTensor(rowptr=rowptr, row=None, col=col, value=value,
-                       sparse_sizes=(subset.size(0), n_id.size(0)),
-                       is_sorted=True)
-
-    return out, n_id
+    return node, row, col, edge
 
 
 if __name__ == "__main__":
-    data_path = "/mnt/disk1/KongmingDataset/cnr-2000/origin/data_csr.pt"
+    data_path = "/mnt/disk1/KongmingDataset/uk-2007-05@1000000/origin/data_csr.pt"
+    # data_path = "/mnt/disk1/KongmingDataset/cnr-2000/origin/data_csr.pt"
     data = torch.load(data_path)
     print(data)
     adj = data.edge_index
+    num_nodes = data.vertex_cnt
+    batch_size = 1024
     subset = torch.tensor([0, 1])
-    num_neighbors = 10
-    out, n_id = sample_adj(adj, subset, num_neighbors, replace=False)
-    print(out)
-    print(n_id)
+    num_neighbors = [25, 10, 10]
+    p = np.random.permutation(num_nodes)
+    pos = 0
+    start = time.perf_counter()
+    while pos < num_nodes - batch_size:
+        subset = p[pos:pos+batch_size]
+        subset = torch.from_numpy(subset)
+        node, row, col, edge = neighbor_sample(adj, subset, num_neighbors)
+        pos += batch_size
+        # print(pos)
+    subset = p[pos:num_nodes]
+    subset = torch.from_numpy(subset)
+    node, row, col, edge = neighbor_sample(adj, subset, num_neighbors)
+    end = time.perf_counter()
+    print("Sample time: {:.2f}s".format( (end-start)))
 
