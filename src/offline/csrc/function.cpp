@@ -11,6 +11,7 @@
 #include "merge.h"
 #include "graphIO.h"
 #include "partition.h"
+#include "gen_degree.h"
 #include "get_part_graph_info.h"
 #include <pybind11/chrono.h>
 #include <pybind11/complex.h>
@@ -65,4 +66,5 @@ PYBIND11_MODULE(compressgnn_offline, m) {
   m.def("output", &output, "output");
   m.def("hybird_partition", &hybird_partition, "hybird partition");
   m.def("topo_partition", &topo_partition, "topo partition");
+  m.def("gen_degree", &gen_degree, "generate degree for each vertex and rule");
 }
