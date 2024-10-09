@@ -107,8 +107,6 @@ class CompressgnnData():
             edge_index = edge_index.astype(np.int64)
             edge_index = torch.from_numpy(edge_index)
             edge_weight = torch.from_numpy(edge_weight)
-            # self.edge_index = torch.as_tensor(edge_index)
-            # self.edge_weight = torch.as_tensor(edge_weight)
             self.edge_index = []
             self.edge_weight = []
             for i in range(step):
