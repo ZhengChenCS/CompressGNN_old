@@ -1,5 +1,5 @@
 # CompressGNN
-This is the VLDB'25 repository for submitting paper **CompressGNN: Accelerating Graph Neural Network Training via
+This is the SIGMOD'25 repository for submitting paper **CompressGNN: Accelerating Graph Neural Network Training via
 Hierarchical Compression**.
 
 ## Code Structure
@@ -18,7 +18,10 @@ The project's code base is organized in the following directory structure.
 ├── model
 ├── README.md
 ├── requirements.txt
-└── src
+├── sampler
+├── socat.log
+├── src
+└── third_party
 ```
 
 ## Installaction
