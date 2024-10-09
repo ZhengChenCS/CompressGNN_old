@@ -22,15 +22,14 @@ def neighbor_sample(src: SparseTensor, subset: torch.Tensor, num_neighbor,
 
 
 if __name__ == "__main__":
-    data_path = "/mnt/disk1/KongmingDataset/uk-2007-05@1000000/origin/data_csr.pt"
-    # data_path = "/mnt/disk1/KongmingDataset/cnr-2000/origin/data_csr.pt"
+    # data_path = "/mnt/disk1/KongmingDataset/uk-2007-05@1000000/origin/data_csr.pt"
+    data_path = "/mnt/disk1/KongmingDataset/cnr-2000/origin/data_csr.pt"
     data = torch.load(data_path)
     print(data)
     adj = data.edge_index
     num_nodes = data.vertex_cnt
     batch_size = 1024
-    subset = torch.tensor([0, 1])
-    num_neighbors = [25, 10, 10]
+    num_neighbors = [25, 10]
     p = np.random.permutation(num_nodes)
     pos = 0
     start = time.perf_counter()
