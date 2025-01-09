@@ -30,7 +30,6 @@ int64_t get_neighbor(int64_t node_id, int64_t neighbor_index,
         int64_t degree = r_degree_ptr[rule_node];
         if (neighbor_index < degree) { //if in this rule, search it top down
             // search in r2v
-            std::cout << "Search rule node:" << rule_node << std::endl;
             size_t layer = 0;
             while(layer < r2r_vlist_ptrs.size()){
                 int64_t r2v_start = r2v_vlist_ptr[rule_node];
@@ -40,7 +39,6 @@ int64_t get_neighbor(int64_t node_id, int64_t neighbor_index,
                     return r2v_elist_ptr[r2v_start + neighbor_index];
                 }
                 neighbor_index -= r2v_count;
-                std::cout << neighbor_index << std::endl;
                 // continue push down
                 int64_t r2r_start = r2r_vlist_ptrs[layer][rule_node];
                 int64_t r2r_end = r2r_vlist_ptrs[layer][rule_node+1];
@@ -52,6 +50,7 @@ int64_t get_neighbor(int64_t node_id, int64_t neighbor_index,
                         rule_node = cur_rule_node;
                         break;
                     }
+                    neighbor_index -= cur_r_degree;
                 }
                 layer++;
             }

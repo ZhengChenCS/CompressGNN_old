@@ -3,8 +3,15 @@
 #include "../../../third_party/parallel-hashmap/parallel_hashmap/phmap.h"
 #include "storage_api.h"
 
-int64_t uniform_randint(int64_t max_val){
-    return rand() % max_val;
+// int64_t uniform_randint(int64_t max_val){
+//     return rand() % max_val;
+// }
+
+inline int64_t uniform_randint(int64_t high) {
+  auto options = torch::TensorOptions().dtype(torch::kInt64);
+  auto ret = torch::randint(0, high, {1}, options);
+  auto ptr = ret.data_ptr<int64_t>();
+  return *ptr;
 }
 
 template <typename scalar_t>
@@ -72,13 +79,11 @@ neighbor_sample_sim_impl(const torch::Tensor v2v_vlist, const torch::Tensor v2v_
         
         for(int64_t i = begin; i < end; i++){
             const int64_t w = samples[i];
-            std::cout << w << std::endl;
             int64_t degree = v_degree_ptr[w];
             if(degree == 0){
                 continue;
             }
             if(num_samples >= degree){
-                std::cout << "ALL Sampling" << std::endl;
                 auto neighbors = get_neighbor_list(w, 
                 v2v_vlist_ptr, v2v_elist_ptr, 
                 v2r_vlist_ptr, v2r_elist_ptr, 
@@ -94,7 +99,6 @@ neighbor_sample_sim_impl(const torch::Tensor v2v_vlist, const torch::Tensor v2v_
                 }
             }
             else{
-                std::cout << "Neighbor Sampling..." << std::endl;
                 std::unordered_set<int64_t> rnd_indices;
                 for(int64_t j = degree - num_samples; j < degree; j++){
                     int64_t rnd = uniform_randint(j);
@@ -102,14 +106,12 @@ neighbor_sample_sim_impl(const torch::Tensor v2v_vlist, const torch::Tensor v2v_
                         rnd = j;
                         rnd_indices.insert(j);
                     }
-                    std::cout << "Sampling " << rnd << "-th neighbor" << std::endl;
                     const int64_t neighbor = get_neighbor(w, rnd, 
                     v2v_vlist_ptr, v2v_elist_ptr, 
                     v2r_vlist_ptr, v2r_elist_ptr, 
                     r2v_vlist_ptr, r2v_elist_ptr, 
                     r2r_vlist_ptrs, r2r_elist_ptrs,
                     v_degree_ptr, r_degree_ptr);
-                    std::cout << "Sampling neighbor: " << neighbor << std::endl;
                     const auto res = to_local_node.insert({neighbor, samples.size()});
                     if(res.second){
                         samples.push_back(neighbor);
@@ -182,7 +184,6 @@ neighbor_sample_ori_impl(const torch::Tensor &colptr, const torch::Tensor &row,
                 }
             } else {
                 // Sample without replacement when num_samples < col_count
-                
                 std::unordered_set<int64_t> rnd_indices;
                 for (int64_t j = col_count - num_samples; j < col_count; j++) {
                     int64_t rnd = uniform_randint(j);

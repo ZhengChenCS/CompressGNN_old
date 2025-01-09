@@ -1,5 +1,4 @@
 from typing import Optional, Tuple
-
 import torch
 from torch_sparse.tensor import SparseTensor
 import numpy as np
@@ -7,6 +6,8 @@ import sys
 sys.path.append("../loader")
 from origin_data import Data
 import time
+from compressgnn_sample import neighbor_sample_ori_impl
+
 
 
 def neighbor_sample(src: SparseTensor, subset: torch.Tensor, num_neighbor,
@@ -15,8 +16,7 @@ def neighbor_sample(src: SparseTensor, subset: torch.Tensor, num_neighbor,
     rowptr, col, value = src.csr()
 
     node, row, col, edge = torch.ops.torch_sparse.neighbor_sample(
-        rowptr, col, subset, num_neighbors, replace, is_directed)
-
+        rowptr, col, subset, num_neighbor, replace, is_directed)
 
     return node, row, col, edge
 
@@ -29,19 +29,18 @@ if __name__ == "__main__":
     adj = data.edge_index
     num_nodes = data.vertex_cnt
     batch_size = 1024
-    num_neighbors = [25, 10]
+    num_neighbors = [25, 10, 10]
     p = np.random.permutation(num_nodes)
     pos = 0
     start = time.perf_counter()
     while pos < num_nodes - batch_size:
         subset = p[pos:pos+batch_size]
         subset = torch.from_numpy(subset)
-        node, row, col, edge = neighbor_sample(adj, subset, num_neighbors)
+        node, row, col, _ = neighbor_sample(adj, subset, num_neighbors)
         pos += batch_size
-        # print(pos)
     subset = p[pos:num_nodes]
     subset = torch.from_numpy(subset)
-    node, row, col, edge = neighbor_sample(adj, subset, num_neighbors)
+    node, row, col, _ = neighbor_sample(adj, subset, num_neighbors)
     end = time.perf_counter()
     print("Sample time: {:.2f}s".format( (end-start)))
 
