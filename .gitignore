@@ -200,4 +200,8 @@ pytorch_sparse_backup/
 
 .log
 
+subgraphs/
+*.npy
+*.npz
+
 
