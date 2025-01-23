@@ -13,6 +13,7 @@
 #include "partition.h"
 #include "gen_degree.h"
 #include "get_part_graph_info.h"
+#include "Gorder/Gorder.h"
 #include <pybind11/chrono.h>
 #include <pybind11/complex.h>
 #include <pybind11/functional.h>
@@ -67,4 +68,5 @@ PYBIND11_MODULE(compressgnn_offline, m) {
   m.def("hybird_partition", &hybird_partition, "hybird partition");
   m.def("topo_partition", &topo_partition, "topo partition");
   m.def("gen_degree", &gen_degree, "generate degree for each vertex and rule");
+  m.def("reorder", &gorder_reorder, "reorder_edges");
 }

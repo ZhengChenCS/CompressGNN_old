@@ -8,7 +8,9 @@ def get_extensions():
     this_dir = os.path.dirname(os.path.abspath(__file__))
     extensions_dir = os.path.join(this_dir, "csrc")
     # main_source=os.path.join(extensions_dir, "function.cpp")
-    sources = glob.glob(os.path.join(extensions_dir, "*.cpp")) + glob.glob(os.path.join(extensions_dir, "**", "*.cc")) + glob.glob(os.path.join(extensions_dir, ".h"))
+    sources = glob.glob(os.path.join(extensions_dir, "*.cpp")) + \
+            glob.glob(os.path.join(extensions_dir, "**", "*.cc")) + \
+            glob.glob(os.path.join(extensions_dir, "**", "*.cpp"))
 
     # sources = [main_source] + sources
     extension = Extension
