@@ -20,7 +20,7 @@ class SGC(torch.nn.Module):
         self.p_time = 0
     
     def reset_cache(self):
-        self.P.reset_parameters()
+        self.P.reset_cache()
         self.p_time = 0
         
     def propagate(self, x, edge_index):

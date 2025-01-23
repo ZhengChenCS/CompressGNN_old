@@ -27,7 +27,7 @@ class SGC(torch.nn.Module):
         self.all_time = 0
     
     def reset_cache(self):
-        self.P.reset_parameters()
+        self.P.reset_cache()
         self.cluster.reset_cache()
         self.propagate_time = 0
         self.cluster_time = 0
