@@ -72,7 +72,8 @@ def main():
             max_depth=8,
             threshold=16,
             min_edge=100000,
-            add_self_loop=True)
+            add_self_loop=True,
+            homo=True)
     elif graph_type == "csr":
         # vlist = np.load(graph_dir + "/csr_vlist.npy")
         # elist = np.load(graph_dir + "/csr_elist.npy")
@@ -91,7 +92,8 @@ def main():
             normalize=True,
             max_depth=8,
             min_edge=100000,
-            threshold=16)
+            threshold=16,
+            homo=True)
     print(data)
     # torch.save(data, save_dir + "/data_" + graph_type + "_default.pt")
     # torch.save(data, save_dir + "/data_" + graph_type + "_" + str(data.step) + ".pt")

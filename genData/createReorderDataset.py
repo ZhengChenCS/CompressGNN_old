@@ -2,6 +2,7 @@ import os
 import sys
 sys.path.append("../loader/")
 from CompressgnnData import CompressgnnData
+from origin_data import Data
 import getopt
 import torch
 import numpy as np
@@ -50,6 +51,7 @@ def main():
     edge_index = np.load(graph_dir + "/edge.npy")
     src, dst, order = reorder_data(edge_index)
     order = np.argsort(order)
+    np.save("order.npy", order)
 
     # gene reordered data
     x = x[order]
@@ -59,26 +61,19 @@ def main():
     test_mask = test_mask[order]
 
     if graph_type == "coo":
-        # edge_index = np.load(graph_dir + "/edge.npy")
-        edge_index = (src, dst)
-        data = CompressgnnData(
+        eedge_index = (src, dst)
+        data = Data(
             x=x,
             y=y,
             edge_index=edge_index,
             train_mask=train_mask,
             vaild_mask=vaild_mask,
             test_mask=test_mask,
-            graph_type="coo",
-            max_depth=8,
-            threshold=16,
-            min_edge=100000,
-            add_self_loop=True)
+            graph_type="coo")
     elif graph_type == "csr":
-        # vlist = np.load(graph_dir + "/csr_vlist.npy")
-        # elist = np.load(graph_dir + "/csr_elist.npy")
         v_cnt = max(src.max(), dst.max()) + 1
         vlist, elist = compressgnn_offline.coo2csr(src, dst, v_cnt)
-        data = CompressgnnData(
+        data = Data(
             x=x,
             y=y,
             edge_index=(
@@ -87,15 +82,11 @@ def main():
             train_mask=train_mask,
             vaild_mask=vaild_mask,
             test_mask=test_mask,
-            graph_type="csr",
-            normalize=True,
-            max_depth=8,
-            min_edge=100000,
-            threshold=16)
+            graph_type="csr"
+        )
+    
     print(data)
-    # torch.save(data, save_dir + "/data_" + graph_type + "_default.pt")
-    # torch.save(data, save_dir + "/data_" + graph_type + "_" + str(data.step) + ".pt")
-    torch.save(data, f"{save_dir}/data_{graph_type}_{data.step}_gorder.pt")
+    torch.save(data, f"{save_dir}/data_{graph_type}_gorder.pt")
 
 
 if __name__ == '__main__':

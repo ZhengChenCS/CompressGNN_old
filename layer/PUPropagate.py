@@ -18,17 +18,17 @@ class PUPropagate(Propagate):
         self.K = K
         self.cached = cached
         self._cached_x = None
-        self.reset_parameters()
+        self.reset_cache()
 
-    def reset_parameters(self):
+    def reset_cache(self):
         self._cached_x = None
+    
 
     def forward(self, x: Tensor, edge_index: Adj,
                 edge_weight: OptTensor = None) -> Tensor:
         """"""
         cache = self._cached_x
         if cache is None:
-            p_start = time.perf_counter()
             for k in range(self.K):
                 # propagate_type: (x: Tensor, edge_weight: OptTensor)
                 x = self.propagate(edge_index, x=x, edge_weight=edge_weight,

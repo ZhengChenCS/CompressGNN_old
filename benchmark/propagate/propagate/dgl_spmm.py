@@ -12,7 +12,7 @@ from torch import Tensor
 from torch_scatter import scatter
 from torch_sparse import SparseTensor, matmul
 import dgl.sparse as dglsp
-
+import dgl.function as fn
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data', type=str, required=True, help="Input data")
@@ -22,7 +22,13 @@ args = parser.parse_args()
 
 
 def spmm(A, B:Tensor):
-    return dglsp.spmm(A, B)
+    return spmm_with_update_all(A, B)
+    # return dglsp.spmm(A, B)
+
+def spmm_with_update_all(g, x):
+    g.srcdata["h"] = x
+    g.update_all(fn.copy_u('h', 'm'), fn.sum('m', 'h'))
+    return g.dstdata["h"]
 
 def main():
     dataset = torch.load(args.data)

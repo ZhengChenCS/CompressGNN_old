@@ -54,7 +54,8 @@ class CompressgnnData():
                  graph_type: str = "coo",
                  max_depth: int = 3,
                  min_edge: int = 1000000,
-                 threshold: int = 16):
+                 threshold: int = 16,
+                 homo: bool = False):
         x = x.astype(np.float32)
         self.x = torch.as_tensor(x)
         self.y = torch.as_tensor(np.array(y))
@@ -158,7 +159,8 @@ class CompressgnnData():
             vlist, elist, value = graph.csc()
             graph = CompressGraph(vlist, elist, value, self.vertex_cnt)
             self.edge_index = graph
-
+        if homo:
+            pass
     def __repr__(self):
         return 'CompressgnnData(vertex_cnt:"%s", rule_cnt:"%s", edge_cnt:"%s", step:"%s", graph_type:"%s")' % (
             self.vertex_cnt, self.rule_cnt, self.edge_cnt, self.step, self.graph_type)
