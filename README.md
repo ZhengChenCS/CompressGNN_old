@@ -10,6 +10,7 @@ The project's code base is organized in the following directory structure.
 .
 ├── benchmark
 ├── dataset
+├── experiment
 ├── genData
 ├── install.sh
 ├── layer
@@ -18,9 +19,8 @@ The project's code base is organized in the following directory structure.
 ├── model
 ├── README.md
 ├── requirements.txt
-├── sampler
-├── socat.log
 ├── src
+├── test
 └── third_party
 ```
 
