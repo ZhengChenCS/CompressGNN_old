@@ -122,14 +122,14 @@ if __name__ == '__main__':
     else:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    warm_up_time = train_runtime(model, dataset, epochs=10, device=device)
+    warm_up_time = train_runtime(model, dataset, epochs=1, device=device)
     
     logger.info("Train time for {:d} epoch: {:.4f}s".format(10, warm_up_time))
     
-    model.reset_cache()
+    # model.reset_cache()
 
-    train_time = train_runtime(model, dataset, epochs=args.epochs, device=device)
-    logger.info("Train time for {:d} epoch: {:.4f}s".format(args.epochs, train_time))
-    # print("Propagate time:{:.4f}".format(model.p_time))
-    print("Train time for {:d} epoch: {:.4f}s".format(args.epochs, train_time))
+    # train_time = train_runtime(model, dataset, epochs=args.epochs, device=device)
+    # logger.info("Train time for {:d} epoch: {:.4f}s".format(args.epochs, train_time))
+    # # print("Propagate time:{:.4f}".format(model.p_time))
+    # print("Train time for {:d} epoch: {:.4f}s".format(args.epochs, train_time))
     

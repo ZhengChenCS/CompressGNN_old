@@ -5,7 +5,7 @@ num_classes=(41 107)
 deltaH=(30 5)
 
 # compressgnn
-for i in {1..1}
+for i in {0..1}
 do
     # csr_data=${root_dir}/${dataset[i]}/compress/data_csr_3.pt
     csr_data=${root_dir}/${dataset[i]}/compress/data_csr_8_gorder.pt
@@ -27,5 +27,5 @@ do
     --device=gpu \
     --deltaH=${deltaH[i]} \
     --log_path=log/${dataset[i]}_compressgnn_sgc.log
-    break
+    # break
 done

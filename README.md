@@ -1,5 +1,5 @@
 # CompressGNN
-This is the SIGMOD'25 repository for submitting paper **CompressGNN: Accelerating Graph Neural Network Training via
+This is the KDD'25 repository for submitting paper **CompressGNN: Accelerating Graph Neural Network Training via
 Hierarchical Compression**.
 
 ## Code Structure

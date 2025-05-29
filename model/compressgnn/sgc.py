@@ -39,6 +39,7 @@ class SGC(torch.nn.Module):
     def transform(self, x: Tensor, is_cluster: bool):
         if is_cluster == True:
             x, index = self.cluster(x)
+            print(x.size())
             x = self.lin1(x).relu()
             x = self.lin2(x)
             x = self.reconstruct(x, index)

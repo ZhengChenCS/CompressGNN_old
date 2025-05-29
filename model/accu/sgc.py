@@ -46,6 +46,7 @@ class SGC(torch.nn.Module):
     def transform(self, x):
         s_time = time.perf_counter()
         x, index = self.cluster(x)
+        print(x.size())
         e_time = time.perf_counter()
         self.cluster_time += e_time - s_time
         t_start = time.perf_counter()
